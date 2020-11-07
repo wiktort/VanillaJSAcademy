@@ -1,0 +1,92 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: cornsilk;
+    color: crimson;
+    font-family: 'Courier New', Courier, monospace;
+    padding: 2vh;
+}
+
+header {
+    width: 70%;
+    margin: auto;
+}
+
+p {
+    font-size: 1.5em;
+    font-weight: 700;
+}
+
+div#app {
+    margin: 2vh auto 0 auto;
+}
+
+.mix {
+    width: 16vw;
+    height: 4vw;
+    box-shadow: none;
+    border: 4px dashed crimson;
+    border-radius: 5%;
+    background-color: transparent;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.3em;
+    font-weight: bold;
+    color: green;
+    transition: 0.4s;
+}
+
+.mix:hover {
+    transform: scale(1.2);
+}
+
+.row {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    text-align: center;
+    width: 70%;
+    height: 80vh;
+    margin: 0 auto 0 auto;
+}
+
+.grid {
+    position: relative;
+    height: 20vh;
+    width: 16vw;
+    padding: 1em;
+    background-color: cornsilk;
+}
+
+.hide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: cornflowerblue;
+    border: 4px solid cornsilk;
+    border-radius: 5%;
+}
+
+.hide.active {
+    background-color: transparent;
+}
+
+img {
+    max-height: 100%;
+    max-width: 100%;
+}
+
+@media (max-width:1330px) {
+    .mix {
+        width: 20vmax;
+        height: 4vmax;
+    }
+}
+
+@media (max-width:890px) {
+    .mix {
+        width: 24vmax;
+    }
+}

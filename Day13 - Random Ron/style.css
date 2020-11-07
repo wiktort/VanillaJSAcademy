@@ -1,0 +1,39 @@
+:root {
+    --color: rgb(100%, 50%, 60%);
+}
+
+body {
+    background-color: grey;
+}
+
+section {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Staatliches', cursive;
+}
+
+blockquote {
+    background-color: var(--color);
+    ;
+    line-height: 3;
+    padding: 0 1.5em 0;
+    font-size: 1.6em;
+    color: white;
+}
+
+button {
+    border: 5px dashed white;
+    background-color: transparent;
+    font-size: 1.3em;
+    font-family: 'Lato', sans-serif;
+    text-transform: uppercase;
+    outline: none;
+}
+
+button:hover {
+    color: white;
+    border-color: var(--color);
+}

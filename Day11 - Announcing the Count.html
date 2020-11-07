@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+       div{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%)
+        }
+        textarea {
+            display: block;
+            min-width: 20vw;
+            min-height: 25vh;
+        }
+        .blue{
+            color: blue;
+        }
+        footer{
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+        }
+        ul {
+            display: flex;
+            justify-content: space-around;
+            width: 40%;
+            list-style: none;
+        }
+        a {
+            color: black;
+            text-decoration: none;
+        }
+        a:hover{
+            color:green;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#">About us</a></li>
+                <li><a href="#">Menu</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="#">Tips</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main tabindex="0">
+        <h1>Characters and Words counting</h1>
+    <div>
+    <label for="text">Enter your text below.</label>
+    <textarea id="text" aria-live="polite" role="status" aria-atomic="true" counting-id="#counting"></textarea>
+    
+    <p id="counting" aria-live="assertive" role="status" aria-atomic="true">You've written 0 words and 0 characters.</p>
+    </div>
+</main>
+<footer>
+    <ul>
+    <li><a href="#">About us</a></li>
+    <li><a href="#">Menu</a></li>
+    <li><a href="#">Contact</a></li>
+    <li><a href="#">Tips</a></li>
+</ul>
+</footer>
+    <script>
+        //I - A way for changing character count value in one element
+        /*  const textField = document.querySelector("#text"); //getting textarea filed 
+        const characterCount = document.querySelector("#character-count"); //getting the span with the number of char.
+        document.addEventListener("input", function () {
+            //inserting the number of characters that a user typed in the textarea into the displaying element's text content
+            characterCount.textContent = textField.textLength;;
+        })
+ */
+
+        //II - A way for changing character count value in multiple elements
+
+        //getting textarea fields 
+        const textFields = Array.prototype.slice.call(document.querySelectorAll("textarea"));
+        let eventTime = new Date();
+        const timeLastPress = 3000;
+
+
+        const countingFunction = ()=> {    
+                    console.log("ok");
+                    //looping through all textarea fields
+                    for (let i = 0; i < textFields.length; i++) {
+                        
+                        //getting the p element that displays the number of words and characters in the current textarea
+                        const counter = document.querySelector(textFields[i].getAttribute("counting-id"));
+
+                        // inserting words from the textarea into an array 
+                        const wordsArray = (textFields[i].value.split(/\W+/g)).filter(function(word){
+                            return word.length >=1;
+                        });
+
+                        //inserting new content to the p element that contains the number of words and characters
+                            counter.textContent = `You've written ${wordsArray.length} words and ${textFields[i].textLength} characters.`;
+                    };
+                };
+            
+        // listening for a change in the textarea         
+        document.addEventListener("input", function () {
+        
+            const timeOut = setTimeout(countingFunction, timeLastPress); 
+            if (new Date() - eventTime < timeLastPress) {
+                        clearTimeout(timeOut);
+                    };
+            eventTime = new Date();
+        });
+
+        // RegEx selector from Chris: (/[\n\r\s]+/g) 
+        // RegEx selector that catches all white spaces: /\s+/
+
+        // setting "tabindex" attribiute on all elements
+        const screenReadersAccesibility = () =>{
+            const allElements = Array.prototype.slice.call(document.body.querySelectorAll("*"));
+        allElements.forEach((element)=>{
+            element.setAttribute("tabindex", 0)
+        });
+        }    
+        // setInterval(screenReadersAccesibility, 2000);
+
+    </script>
+</body>
+
+</html>

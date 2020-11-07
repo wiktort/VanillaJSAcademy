@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+       div{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%)
+        }
+        textarea {
+            display: block;
+            min-width: 20vw;
+            min-height: 25vh;
+        }
+        .blue{
+            color: blue;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Characters and Words counting</h1>
+    <div>
+    <label for="text">Enter your text below.</label>
+    <textarea id="text" character-count-id="#character-count" word-count-id="#word-count"></textarea>
+    
+    <p>You've written <strong><span id="word-count">0</span> words</strong> and <strong><span id="character-count">0</span> characters</strong>.</p>
+    </div>
+    <script>
+        //I - A way for changing character count value in one element
+        /*  const textField = document.querySelector("#text"); //getting textarea filed 
+        const characterCount = document.querySelector("#character-count"); //getting the span with the number of char.
+        document.addEventListener("input", function () {
+            //inserting the number of characters that a user typed in the textarea into the displaying element's text content
+            characterCount.textContent = textField.textLength;;
+        })
+ */
+
+        //II - A way for changing character count value in multiple elements
+
+        //getting textarea fields 
+        const textFields = Array.prototype.slice.call(document.querySelectorAll("textarea"));
+        // input event - https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/input_event 
+        document.addEventListener("input", function () {
+            //looping through all textarea fields
+            for (let i = 0; i < textFields.length; i++) {
+                
+                // 1. Character count
+                //getting the element that displays the number of characters in the current textarea
+                const characterCount = document.querySelector(textFields[i].getAttribute("character-count-id"));
+                //inserting the number of characters that a user typed in the textarea into the displaying element's text content
+                characterCount.textContent = textFields[i].textLength;
+
+                // 2. Word count
+                //getting the element that displays the number of words in the current textarea
+                const wordCount = document.querySelector(textFields[i].getAttribute("word-count-id"));
+                // inserting words from the textarea into an array 
+                const wordsArray = (textFields[i].value.split(/\W+/g)).filter(function(word){
+                    return word.length >=1;
+                });
+                //inserting the number of words that a user typed in the textarea into the displaying element's text content
+                wordCount.textContent = wordsArray.length;
+            };
+        });
+    // RegEx selector from Chris: (/[\n\r\s]+/g) 
+    // RegEx selector that catches all white spaces: /\s+/
+    </script>
+</body>
+
+</html>
