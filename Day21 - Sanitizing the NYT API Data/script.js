@@ -122,16 +122,15 @@ Object.keys(categories).forEach(key=>{
 };
 //Loading / deleting articles when a button was pressed
 const addOrDelete = (e)=>{
-    if(e.target.classList.contains("more")){
-        loadArticles(e);
-        scroll();
-    } else if (e.target.classList.contains("less")){
+    if (e.target.classList.contains("less")){
         document.querySelector(".more").classList.remove("off");
         resetIndexes();
         div.innerHTML = "";
+    };
+    if(e.target.classList.contains("more") || e.target.classList.contains("less")){
         loadArticles(e);
         scroll();
-    }
+    }; 
 }
 
 
