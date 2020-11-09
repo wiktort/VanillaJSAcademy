@@ -4,9 +4,15 @@ const h2 = Array.prototype.slice.call(document.querySelectorAll("h2"));
 
 const table = document.createElement("table");
 const tbody = document.createElement("tbody");
-table.appendChild(tbody);
+tbody.innerHTML += `<thead>
+                        <tr>
+                            <th>List of anchor links</th>
+                        </tr>
+                    </thead>`;
+
 h2.forEach(item => {
     tbody.innerHTML += `<tr><a href="#${item.id}">${item.textContent}</a></tr>`;
 });
 
+table.appendChild(tbody);
 divTable.appendChild(table);
