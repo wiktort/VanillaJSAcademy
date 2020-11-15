@@ -2,14 +2,13 @@
     const weatherApiKey = "31358223a28545a4bbdf0d5b56703384";
     const iconsURL = "https://www.weatherbit.io/static/img/icons/";
 
-    const x =  await fetch("https://ipapi.co/json");
-    const y = await x.json();
+    const ipapi =  await fetch("https://ipapi.co/json");
+    const location  = await ipapi.json();
     
-    const z = await fetch(`https://api.weatherbit.io/v2.0/current?city=${y.city}&country=${y.country}&key=${weatherApiKey}`);
-    const z2 = await z.json();
-    console.log(z, z2);
+    const _weather = await fetch(`https://api.weatherbit.io/v2.0/current?city=${location.city}&country=${location.country}&key=${weatherApiKey}`);
+    const weather = await _weather.json();
 
-    function render (data) {
+    await (function render (data) {
         document.querySelector("#app").innerHTML = `
         <h2>Weather near you:</h2>
         <table>
@@ -36,7 +35,7 @@
                 <td>${data.data[0].pres} hPa</td>
             </tr>
         </table>`;
-    };
+    })(weather);
 
-    const s = await render (z2);
+    // const render = await render (z2);
 })();
