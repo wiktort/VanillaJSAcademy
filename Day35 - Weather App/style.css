@@ -1,0 +1,42 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 1em auto;
+    max-width: 30em;
+    width: 88%;
+    background-color: ghostwhite;
+    color: royalblue;
+}
+
+#app {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 30vh;
+
+}
+
+#app h2 span {
+    text-decoration: underline;
+}
+
+.box.icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 99%;
+    height: auto;
+    background-color: transparent;
+}
+
+.box {
+    width: 17vw;
+    height: 17vw;
+    padding: 2%;
+    margin: 1vh;
+    background-color: lightcyan;
+    text-align: center;
+}

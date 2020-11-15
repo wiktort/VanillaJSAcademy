@@ -9,33 +9,29 @@
     const weather = await _weather.json();
 
     await (function render (data) {
-        document.querySelector("#app").innerHTML = `
-        <h2>Weather near you:</h2>
-        <table>
-            <tr>
-                <th>City</th>
-                <th>Temerature</th>
-                <th>Liquid equivalent</th>
-                <th>Relative humidity</th>
-                <th>Wind speed</th>
-                <th>Cloud coverage</th>
-                <th>Pressure mb</th>
-            </tr>
-            <tr>
-                <td>
-                    ${data.data[0].city_name}
-                    <img src="${iconsURL}${data.data[0].weather.icon}.png" alt="an icon with ${data.data[0].weather.description}">
-                    <p>${data.data[0].weather.description}</p>    
-                </td>
-                <td>${data.data[0].temp} ˚C</td>
-                <td>${data.data[0].precip} mm/hr</td>
-                <td>${data.data[0].rh} %</td>
-                <td>${data.data[0].wind_spd} m/s</td>
-                <td>${data.data[0].clouds} %</td>
-                <td>${data.data[0].pres} hPa</td>
-            </tr>
-        </table>`;
-    })(weather);
+        const values = [
+            ["Temperature", "temp", "˚C"],
+            ["Liquid equivalent", "precip", "mm/hr" ],
+            ["Relative humidity", "rh", "%"],
+            ["Wind speed", "wind_spd", "m/s" ],
+            ["Cloud coverage", "clouds", "%" ],
+            ["Pressure mb", "pres", "hPa" ],
 
-    // const render = await render (z2);
+        ];
+
+        document.querySelector("#app").innerHTML = `
+            <h2>Weather near you - <span class="city">${data.data[0].city_name}, ${data.data[0].country_code}</span></h2>
+            <div class="box icon">
+                    <img src="${iconsURL}${data.data[0].weather.icon}.png" alt="an icon with ${data.data[0].weather.description}">
+                    <p>${data.data[0].weather.description}</p>
+            </div>`;
+
+        values.forEach(item => {
+            document.querySelector("#app").innerHTML += `
+            <div class="box">
+                <h3>${item[0]}</h3>
+                <p>${(data.data[0][item[1]]).toFixed(2)} ${item[2]}</p>
+            </div>`;
+        });
+    })(weather);
 })();
