@@ -1,3 +1,12 @@
+// function that sanitizes text content coming from a third-party, it works by finding any character that’s not a letter or number and converting it into unicode.
+const sanitizeHTML = function (str) {
+	return str.replace(/[^\w. ]/gi, function (c) {
+		return '&#' + c.charCodeAt(0) + ';';
+	});
+};
+
+
+//
 class Weather {
     constructor(){
         this.city = "Szczytno";
@@ -69,18 +78,18 @@ class Weather {
         
         document.querySelector("#forecast").innerHTML += `
         <div id="top-bar" class="bar">
-            <h2>Weather near - <span class="city">${data.data[0].city_name}, ${data.data[0].country_code}</span></h2>
+            <h2>Weather near - <span class="city">${sanitizeHTML(data.data[0].city_name)}, ${sanitizeHTML(data.data[0].country_code)}</span></h2>
             <div class="icon">
                     <img src="${iconsURL}${data.data[0].weather.icon}.png" alt="an icon with ${data.data[0].weather.description}">
             </div>
-            <p>${data.data[0].weather.description}</p>
+            <p>${sanitizeHTML(data.data[0].weather.description)}</p>
         </div>`;
 
         values.forEach(item => {
             document.querySelector("#forecast").innerHTML += `
             <div class="bar">
                 <h2>${item[0]}</h2>
-                <p>${(data.data[0][item[1]]).toFixed(2)} ${item[2]}</p>
+                <p>${sanitizeHTML((data.data[0][item[1]]).toFixed(2))} ${item[2]}</p>
             </div>`;
         });       
     };
