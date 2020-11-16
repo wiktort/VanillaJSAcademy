@@ -1,52 +1,161 @@
 * {
     box-sizing: border-box;
+    margin: 0;
 }
 
 body {
-    margin: 1em auto;
-    width: 70%;
-    background-color: ghostwhite;
-    color: royalblue;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100vh;
+    background-color: rgb(40, 40, 50);
+    color: rgb(245, 245, 255)
+}
+
+a {
+    color: rgb(245, 245, 255)
+}
+
+header,
+footer {
+    background-color: rgb(30, 30, 40);
+    height: 10vh;
+    width: 100%;
+    padding: 2%;
 }
 
 #app {
     display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    width: 100%;
-}
-
-#app h2 span {
-    text-decoration: underline;
-}
-
-.box.icon {
-    display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
-    width: 99%;
-    background-color: transparent;
+    margin: 2vh 0 2vh 0;
 }
 
 .box {
-    width: 18vw;
-    height: 18vw;
-    padding: 2%;
-    margin: 1vh;
-    background-color: lightcyan;
-    text-align: center;
+    width: 90%;
+    max-width: 500px;
 }
 
-@media (min-width: 1440px) {
-    .box {
-        width: 12vw;
-        height: 12vw;
+#forecast,
+#location,
+#location form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+#forecast h2 span {
+    text-decoration: underline;
+}
+
+#location {
+    margin-top: 2vh;
+}
+
+#location form {
+    margin-top: 2vh;
+    align-items: center;
+}
+
+#location form * {
+    width: 50%;
+    border: none;
+    margin-bottom: 5px;
+}
+
+#location #city,
+#location #country {
+    background-color: rgb(245, 245, 255);
+    color: rgb(30, 30, 40);
+}
+
+#location #change {
+    background-color: rgba(30, 30, 40, 0.8);
+    color: rgb(245, 245, 255);
+    border: 1px dashed rgb(245, 245, 255);
+}
+
+
+.bar {
+    display: flex;
+    align-items: center;
+    height: 7vh;
+    max-height: 100px;
+    padding: 2%;
+    margin: 1px;
+    background-color: rgba(30, 30, 40, 0.8);
+}
+
+.bar h2 {
+    width: 75%;
+}
+
+.bar p,
+.bar div {
+    width: 25%;
+}
+
+#top-bar {
+    height: auto;
+    max-height: none;
+    width: 100%;
+}
+
+#top-bar h2 {
+    width: 50%;
+}
+
+#top-bar div {
+    display: flex;
+    justify-content: center;
+}
+
+#top-bar img {
+    width: 80%;
+}
+
+
+@media (min-width: 1024px) {
+    #location form * {
+        width: 75%;
     }
 }
 
-@media (min-width: 1920) {
-    .box {
-        width: 11vw;
-        height: 11vw;
+@media (orientation: landscape) {
+
+    header,
+    footer {
+        height: 20vh;
+    }
+}
+
+@media (orientation: landscape) and (min-width: 640px) {
+    #app {
+        flex-direction: row;
+        align-items: flex-start;
+    }
+
+    #forecast,
+    #location {
+        margin: 0 2vw 0 2vw;
+    }
+
+    #forecast {
+        width: 60%;
+    }
+
+    #location {
+        width: 40%;
+    }
+
+}
+
+@media (min-width: 1024px) {
+
+    header,
+    footer {
+        height: 10vh;
     }
 }
