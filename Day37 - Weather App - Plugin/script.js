@@ -23,7 +23,9 @@ Full list of options:
 }
 */
 
+//
 //Functions
+//
 
 // function that sanitizes text content coming from a third-party, it works by finding any character that’s not a letter or number and converting it into unicode.
 const sanitizeHTML = function (str) {
@@ -37,7 +39,10 @@ const sanitizeHTML = function (str) {
 class Weather {
     constructor(){
         this.forecast = {};
+
+        //
         //Default settings
+        //
         this.defaults = {
             city: "Szczytno",
             country: "PL",
@@ -141,7 +146,10 @@ class Weather {
 
 };
 
+//
 //inits
+//
+
 const weather = new Weather;
 weather.app();
 
