@@ -1,0 +1,127 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100vh;
+    background-color: rgb(40, 40, 50);
+    color: rgb(245, 245, 255)
+}
+
+a {
+    color: rgb(245, 245, 255)
+}
+
+header,
+footer {
+    background-color: rgb(30, 30, 40);
+    height: 10vh;
+    width: 100%;
+    padding: 2%;
+}
+
+#app {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 2vh 0 2vh 0;
+}
+
+.box {
+    width: 90%;
+    max-width: 500px;
+}
+
+#forecast,
+    {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+#forecast h2 span {
+    text-decoration: underline;
+}
+
+
+
+.bar {
+    display: flex;
+    align-items: center;
+    height: 7vh;
+    max-height: 100px;
+    padding: 2%;
+    margin: 1px;
+    background-color: rgba(30, 30, 40, 0.8);
+}
+
+.bar h2 {
+    width: 75%;
+}
+
+.bar p,
+.bar div {
+    width: 25%;
+}
+
+#top-bar {
+    height: auto;
+    max-height: none;
+    width: 100%;
+}
+
+#top-bar h2 {
+    width: 50%;
+    flex-grow: 1;
+}
+
+#top-bar div {
+    display: flex;
+    justify-content: center;
+}
+
+#top-bar img {
+    width: 80%;
+}
+
+
+
+
+@media (orientation: landscape) {
+
+    header,
+    footer {
+        height: 20vh;
+    }
+}
+
+@media (orientation: landscape) and (min-width: 640px) {
+    #app {
+        flex-direction: row;
+        align-items: flex-start;
+    }
+
+    #forecast {
+        margin: 0 2vw 0 2vw;
+    }
+
+    #forecast {
+        width: 60%;
+    }
+
+}
+
+@media (min-width: 1024px) {
+
+    header,
+    footer {
+        height: 10vh;
+    }
+}
