@@ -34,6 +34,7 @@ class Form  {
         this.inputs.forEach( item => {
             // check if id exists and render value
             if(!item.id) return;
+            // set "",if there is not any data for the item in the object 
             item.value = data[item.id] || "";
         });
     }
@@ -46,10 +47,8 @@ class Form  {
 
     // handle 'input' events
     inputHandle(e) {
-        const elem = e.target;
         
-        // save inputs value while typing
-
+      // save inputs value while typing
         // create an object with values
         const temp = this.inputs.reduce((acc, current) => {
             // check if the id exists otherwise return acc
