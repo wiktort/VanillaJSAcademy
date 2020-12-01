@@ -142,9 +142,7 @@
 					monsters.map(function (monster, index) {
 						var html =
 							'<div class="grid">' +
-								// @bug {we should render 'monster as the id instead odf index'}.
-								// '<button data-monster-id="' + index + '">' +
-									'<button data-monster-id="' + monster + '">' +
+								'<button data-monster-id="' + index + '">' +
 									'<img alt="Click the door to see what\'s behind it" src="door.svg">' +
 								'</button>' +
 							'</div>';
@@ -215,7 +213,7 @@
 				// 3. typo in 'socks' }.
 			// if (monsters[id] = 'socks') {
 			
-			if (id === 'sock') {
+			if (monsters[id] === 'sock') {
 				renderLost();
 				return;
 			}
@@ -224,10 +222,10 @@
 			// This will replace the button so that the content can't be clicked again
 			// We'll use the id to get the monster from our shuffled array
 			
-			// @bug {we should render a content into the closest div container (in the previous version we could render into a button ) and render the id not the monsters array}.
+			// @bug {we should render a content into the closest div container (in the previous version we could render into a button ).}
 			// monster.parentNode.innerHTML = '<img alt="' + monsters[id] + '" src="' + monsters[id] + '.svg">';
 
-			event.target.closest("button").parentNode.innerHTML = '<img alt="' + id + '" src="' + id + '.svg">';
+			event.target.closest("button").parentNode.innerHTML = '<img alt="' + monsters[id] + '" src="' + monsters[id] + '.svg">';
 
 			// Increase the number of monsters who have been found by 1
 			found++;
