@@ -11,7 +11,8 @@ const submit = document.querySelector("#save-me [type='submit']");
 
 class Form  {
     constructor(element){
-
+        this.prefix = 'auto-save_';
+        
         // get inputs & textareas that are inside of the provided element
         this.inputs = Array.prototype.slice.call(element.children)
         .filter(child => {
@@ -19,7 +20,7 @@ class Form  {
         });
 
 
-        //render data from storage
+        //render data from the storage
         this.renderStorage();
     }
 
@@ -28,26 +29,28 @@ class Form  {
         // render data into each input 
         this.inputs.forEach( item => {
             //get data from storage
-            const data = localStorage.getItem(item.id);
+            const data = localStorage.getItem(`${this.prefix}${item.id}`);
     
             //render value
             item.value = data;
         });
     }
 
-    // hadle 'submit' events & reset storage
+    // hadle 'submit' events & reset the storage
     resetStorage(e) {
+        // remove data for the storage
         this.inputs.forEach( item => {
-            // remove data for the storage
-            localStorage.removeItem(item.id); 
+            localStorage.removeItem(`${this.prefix}${item.id}`); 
         });
     } 
 
     // handle 'input' events
     inputHandle(e) {
         const elem = e.target;
+        // check if the id exists otherwise return
+        if(!e.target.id) return;
         // save inputs value while typing
-        localStorage.setItem(elem.id, elem.value)
+        localStorage.setItem(`${this.prefix}${elem.id}`, elem.value)
     }
     
     
@@ -62,7 +65,7 @@ class Form  {
 const storageManagement = new Form(form);
 
  // listen form 'input' events
- document.addEventListener("input", storageManagement.inputHandle);
+ document.addEventListener("input", storageManagement.inputHandle.bind(storageManagement));
 
  // listen for submit event in the form
- form.addEventListener("submit", storageManagement.resetStorage.bind(storageManagement), false);
+ form.addEventListener("submit", storageManagement.resetStorage.bind(storageManagement));
