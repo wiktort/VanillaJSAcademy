@@ -185,7 +185,7 @@
 
 			// If a "play again" button was clicked, reset the UI and end the callback function
 			
-			// @bug {in the hasAttribute method we type an attribute without squere brackets}.
+			// @bug {in the hasAttribute method we typed an attribute without sqaere brackets}.
 			// if (event.target.hasAttribute('[data-monster-play-again]')) {
 			if (event.target.hasAttribute('data-monster-play-again')) {
 				renderMonsters();
@@ -196,7 +196,7 @@
 			// If not, it's not a monster
 			// return and stop running our callback function
 			
-			// @bug {missing squere brackets in the attribute}.
+			// @bug {missing square brackets in the attribute}.
 			// var monster = event.target.closest('data-monster-id');
 			var monster = event.target.closest('[data-monster-id]');
 			if (!monster) return;
@@ -207,10 +207,8 @@
 			// If the door reveals a sock, render the lost UI
 			// Then, end the callback function
 
-			// @bug {
-				// 1. we check the id not the monsters array array  
-				// 2. Using a single = instead of a comparison operator
-				// 3. typo in 'socks' }.
+			// @bug {Using a single = instead of a comparison operator}
+			// @bug 2. typo in 'socks' }.
 			// if (monsters[id] = 'socks') {
 			
 			if (monsters[id] === 'sock') {
@@ -221,11 +219,7 @@
 			// Update the HTML for the button's parent element
 			// This will replace the button so that the content can't be clicked again
 			// We'll use the id to get the monster from our shuffled array
-			
-			// @bug {we should render a content into the closest div container (in the previous version we could render into a button ).}
-			// monster.parentNode.innerHTML = '<img alt="' + monsters[id] + '" src="' + monsters[id] + '.svg">';
-
-			event.target.closest("button").parentNode.innerHTML = '<img alt="' + monsters[id] + '" src="' + monsters[id] + '.svg">';
+			monster.parentNode.innerHTML = '<img alt="' + monsters[id] + '" src="' + monsters[id] + '.svg">';
 
 			// Increase the number of monsters who have been found by 1
 			found++;
