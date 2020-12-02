@@ -30,13 +30,17 @@ class Form  {
         // render data into each input 
         this.formElements.forEach( item => {
             // check if the id or name exists and render value
+            // in case of type=radio check which item value was saved and set checked=true for it
             // set "",if there is not any data for the item in the object 
             const attr = item.id || item.name;
             if(attr){
-                item.value = data[attr] || "";
-                (item.type === "checkbox" || item.type === "radio")
-                ? item.checked = data[attr]
-                : item.value = data[attr] || "";
+                if(item.type === "checkbox"){
+                    item.checked = data[attr];
+                } else if(item.type === "radio"){
+                    item.checked = data[attr] === item.value ? true : false;
+                } else{
+                    item.value = data[attr] || "";
+                };
             } else {
                 return;
             };
@@ -52,27 +56,25 @@ class Form  {
 
     // handle 'input' events
     inputHandle(e) {
-        
-      // save inputs value while typing
-        // create an object with values
-        const temp = this.formElements.reduce((acc, current) => {
+    
+        // get previously saved data in the localStorage
+        const data = localStorage.getItem(this.prefix);
+        // parse the data into an object or create a new object 
+        const saved = JSON.parse(data) || {};
 
-            // create storage key for the new object (id or name)
-            const attr = current.id || current.name;
+        // create storage key for the new object (id or name)
+        const attr = e.target.id || e.target.name;
 
-            //  add current element's checked status or value to the object
-            if(attr){
-                (current.type === "checkbox" || current.type === "radio")
-                ? acc[attr] = current.checked
-                : acc[attr] = current.value;
-                return acc;
-            } else{
-                return acc;
-            };
-            
-        }, {});
+        //  add current element's checked status or value to the object
+        if(attr){
+            (e.target.type === "checkbox" )
+            ? saved[attr] = e.target.checked
+            : saved[attr] = e.target.value;
+        } else {
+            return;
+        };
         //save the object in the local storage as a string
-        localStorage.setItem(this.prefix, JSON.stringify(temp));
+        localStorage.setItem(this.prefix, JSON.stringify(saved));
     }
     
     
