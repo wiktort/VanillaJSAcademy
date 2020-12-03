@@ -14,7 +14,13 @@ class PirateNews{
         this.apiURL = "https://vanillajsacademy.com/api/pirates.json";
         this.prefix = "pirat-api-cache";
     }
-    
+
+    // function that sanitizes text content coming from a third-party, it works by finding any character that’s not a letter or number and converting it into unicode.
+     sanitizeHTML = (str) => {
+        return str.replace(/[^\w. ]/gi, function (c) {
+            return '&#' + c.charCodeAt(0) + ';';
+        });
+    }
     //fetch data from provided API
     getArticles = async () => {
         const data = await fetch(this.apiURL)
@@ -38,7 +44,7 @@ class PirateNews{
     createUL = (articles) => {
        return ('<ul>' +
                     articles.map(item => {
-                        const html = `<li>${item.title}</li>`
+                        const html = `<li>${this.sanitizeHTML(item.title)}</li>`
                         return html;
                     }).join("") +
                 '</ul>');
