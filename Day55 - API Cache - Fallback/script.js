@@ -52,6 +52,17 @@ class PirateNews{
         return data;
     }
 
+    // render data when fetch fails
+    // check saved data completness and eventually render it, otherwise render <p> element
+    renderFallback(saved, element){
+        if(saved && saved.data && saved.data.length > 1){
+            console.log("it's expired, but that's better than nothing..")
+            element.innerHTML = this.createUL(saved.data);
+        }else {
+            element.innerHTML = `<p>...It is not a pirates' age ;< Try agian later!</p>`;
+        };
+    }
+
     // get items from provided data and return 'ul' list with items
     createUL = (articles) => {
        return ('<ul>' +
@@ -96,20 +107,14 @@ class PirateNews{
             /* 
             * if data is not valid, get a new one and render it to provided element. 
             * check if the new one contains articles
+            * if not, invoke renderFallback and return
             * If yes, render the articles and save it in localstorage
-            * if not, 1a. check saved data completness and eventually render it, otherwise 1b. render <p> element
-            * 2. return at the end 
             */
             this.getArticles()
             .then(response => {
                 const articles = response.articles;
                 if (!articles){
-                    if(saved && saved.data && saved.data.length > 1){
-                        console.log("it's expired, but that's better than nothing..")
-                        element.innerHTML = this.createUL(saved.data);
-                    }else {
-                        element.innerHTML = `<p>...It is not a pirates' age ;< Try agian later!</p>`;
-                    };
+                    this.renderFallback(saved, element);
                     return;
                 };
                 console.log('new fetch');
