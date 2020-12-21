@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Timer</title>
+
+	<style type="text/css">
+		body {
+			margin: 0;
+			padding: 0;
+			min-height: 100vh;
+			background-color: hsl(240, 29%, 15%);
+			color: white;
+		}
+		.container {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+
+			border: 2px solid burlywood;
+			width: 300px;
+			height: 300px;
+
+			box-sizing: border-box;
+		}
+		#app{
+			flex-grow: 1;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			font-size: 4rem;
+			width: 100%;
+		}
+		#app p{
+			margin: 20px;
+		}
+
+		#buttonWrapper{
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			grid-gap: 10%;
+			width: 80%;
+		}
+	</style>
+</head>
+<body>
+
+	<div class="container">
+		<h1 tabindex="0">Timer</h1>
+
+		<div id="app" tabindex="0" aria-live="polite" role="timer"></div>
+	</div>
+<script src="script.js"></script>
+</body>
+</html>
