@@ -1,8 +1,3 @@
-//
-// Functions
-//
-
-
 /**
  * Handle proxy changes
  * @param  {Constructor} instance The constructor instance
@@ -79,6 +74,10 @@ const Timer = function({
     });
 };
 
+//
+// Methods
+//
+
 /** 
  *  render component
 */
@@ -109,13 +108,11 @@ Timer.prototype.timeConvert = function(num){
     return convert(minutes) + ":" + convert(seconds);
 };
 
-// 1.clear interval, 2.reset this.time and 3.log 'end'
+// 1.clear interval, 2.reset this.time and change stopped prop.
 Timer.prototype.countingEnd = function(){
     clearInterval(this.state.intervalID);
     this.state.time = this.state.baseTime;
     this.state.stopped = true;
-    // this.render();
-    console.log("end");
 };
 
 //Reset counter 
@@ -131,7 +128,6 @@ Timer.prototype.handleStartPause = function(e){
     if(!this.state.stopped){
         clearInterval(this.state.intervalID);
         this.state.stopped = !this.state.stopped;
-        this.render();
     } else if (this.state.stopped) {
         this.state.stopped = !this.state.stopped;
         this.count();
@@ -139,16 +135,11 @@ Timer.prototype.handleStartPause = function(e){
 };
 
 /**
- * clear this.elem 
  * set interval and assign its id to this.intervalID, 
  * if this.time < 0, invoke this.countingEnd
  * */ 
 Timer.prototype.count= function(){
-    
-    this.state.elem.innerHTML = "";
-
     this.state.intervalID = setInterval(()=>{
-        // this.render();
         this.state.time -= 1;
 
         if(this.state.time < 0){
