@@ -76,7 +76,7 @@ Timer.prototype.countingEnd = function(){
 Timer.prototype.handleReset = function(){
     clearInterval(this.state.intervalID);
     this.state.time = this.state.baseTime;
-    this.state.stopped = !this.state.stopped;
+    this.state.stopped = false;
     this.count();
 };
 //
