@@ -53,4 +53,3 @@ const app = new Reef('#app', {
     }
 });
 app.getData();
-app.render();
