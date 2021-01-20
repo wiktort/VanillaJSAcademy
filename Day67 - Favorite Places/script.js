@@ -65,7 +65,7 @@ Reef.prototype.saveToLocalStorage = function(key, value){
 };
 
 Reef.prototype.getFromLocalStorage = function(prop, key){
-    this.data[prop] = JSON.parse(localStorage.getItem(key));
+    this.data[prop] = JSON.parse(localStorage.getItem(key)) || {};
 };
 
 //
