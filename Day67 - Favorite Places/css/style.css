@@ -1,0 +1,129 @@
+body {
+  margin: 1em;
+  background-color: #c8d2d2;
+  color: #0c135f;
+  font-family: monospace;
+  font-size: 1.1rem;
+}
+
+#app {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  max-width: 1366px;
+  width: 88%;
+  margin: 0 auto;
+}
+
+.cards-wrapper {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.card {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 2vh;
+  padding: 2vmax;
+  border: 1px solid black;
+}
+
+.card header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-between;
+  -ms-flex-pack: space-between;
+  justify-content: space-between;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.card header button {
+  height: 45px;
+  width: 45px;
+  line-height: 1.2rem;
+  font-size: 1.3rem;
+  padding: 8px;
+  border-radius: 30px;
+}
+
+.card header button[aria-pressed="true"] {
+  color: crimson;
+}
+
+
+.card .wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.card .wrapper .img {
+  width: 100%;
+  height: auto;
+}
+
+.card .wrapper .img img {
+  width: 100%;
+  height: auto;
+}
+
+.card .wrapper .data {
+  width: 100%;
+}
+
+@media (min-width: 640px) {
+  .card .wrapper {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-box-align: start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+  }
+
+  .card .wrapper .img {
+    width: 40%;
+    margin-right: 2vw;
+  }
+
+  .card .wrapper .data {
+    width: 60%;
+  }
+}
+
+/*# sourceMappingURL=style.css.map */
