@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Explore</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script src="https://kit.fontawesome.com/9c4deead53.js" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+
+	<h1>Explore</h1>
+	<p>Explore cool, quirky places in your own backyard.</p>
+	<div class="filters" aria-label="filters">
+		<strong>Filter:</strong>
+		<div>
+			<label>
+				<input type="radio" name="view" value="all" checked>
+				All Places
+			</label>
+		</div>
+		<div>
+			<label>
+				<input type="radio" name="view" value="faves">
+				Favorites
+			</label>
+		</div>
+		<div>
+			<label>
+				<input type="radio" name="view" value="visited">
+				Visited
+			</label>
+		</div>
+		<div>
+			<label>
+				<input type="radio" name="view" value="not-visited">
+				Not Visited
+			</label>
+		</div>
+</div>
+	<div id="app" aria-live="polite"></div>
+	
+	<script type="module" src="./script.js"></script>
+</body>
+</html>
